@@ -1,6 +1,15 @@
 {
+  "plugins": [
+    "react-hot-loader/babel"
+  ],
   "presets": [
     "@babel/env",
-    "@babel/preset-react"
+    "@babel/preset-react",
+    [
+      "@babel/preset-stage-2",
+      {
+        "decoratorsLegacy": true
+      }
+    ]
   ]
 }

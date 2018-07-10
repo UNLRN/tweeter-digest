@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'none',
   entry: {
-    main: './client/App/index.js',
+    main: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].js',
     publicPath: '/',
   },
@@ -16,16 +16,19 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, '../dist/index.html'),
       hash: true,
-      template: './client/App/index.html',
+      title: 'Tweeter Digest',
+      template: path.resolve(__dirname, '../src/index.html'),
     }),
   ],
+  resolve: {
+    modules: [path.resolve(__dirname, '../'), 'node_modules'],
+  },
 };
